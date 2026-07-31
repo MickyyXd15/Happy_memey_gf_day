@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ff7fa5">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="For My Girl">
+
+<title>Happy Girlfriend's Day ♡</title>
+
+<style>
+:root {
+  --pink: #ff7fa5;
+  --darkpink: #d83d73;
+  --paper: #fffaf3;
+  --text: #593441;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: Georgia, "Times New Roman", serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, #ffe7ee, transparent 40%),
+    linear-gradient(145deg, #ffc6d8, #e9789f);
+  overflow-x: hidden;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* PASSWORD */
+
+#lock {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: linear-gradient(145deg, #ffd9e5, #ee86aa);
+}
+
+.lock-card {
+  width: min(92vw, 410px);
+  background: #fffaf6;
+  border-radius: 30px;
+  padding: 32px 22px;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(100, 25, 60, .35);
+}
+
+.big-heart {
+  font-size: 55px;
+  color: #e44f80;
+}
+
+.lock-card h1 {
+  margin: 5px 0 10px;
+}
+
+.lock-card p {
+  line-height: 1.6;
+}
+
+#password {
+  width: 100%;
+  border: 2px solid #f3b1c6;
+  border-radius: 18px;
+  padding: 15px;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 8px;
+  outline: none;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+}
+
+.btn {
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fa6996, #d83d73);
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(150, 35, 80, .3);
+}
+
+.open-btn {
+  width: 100%;
+  margin-top: 13px;
+}
+
+#error {
+  color: #c92e5e;
+  height: 20px;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+/* MAIN */
+
+#app {
+  min-height: 100vh;
+  padding: 18px 10px 40px;
+}
+
+header {
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 12px rgba(100, 20, 60, .4);
+  margin-bottom: 20px;
+}
+
+header h1 {
+  font-size: clamp(31px, 8vw, 52px);
+  margin: 5px 0;
+}
+
+header p {
+  font-style: italic;
+}
+
+/* BOOK */
+
+.book {
+  width: min(94vw, 620px);
+  height: min(72vh, 720px);
+  min-height: 520px;
+  margin: auto;
+  position: relative;
+  perspective: 1800px;
+}
+
+.page {
+  position: absolute;
+  inset: 0;
+  padding: 22px;
+  overflow-y: auto;
+  background: var(--paper);
+  border-radius: 12px 24px 24px 12px;
+  border: 1px solid #f1d5db;
+  box-shadow:
+    0 20px 50px rgba(100, 30, 60, .35),
+    inset 16px 0 30px rgba(160, 80, 100, .06);
+
+  transform-origin: left center;
+  transition:
+    transform .8s cubic-bezier(.2,.75,.2,1),
+    opacity .5s;
+  backface-visibility: hidden;
+}
+
+.page::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 11px;
+  width: 2px;
+  background: #eac4cd;
+}
+
+.page.active {
+  z-index: 10;
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.page.before {
+  transform: rotateY(-175deg);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page.after {
+  transform: rotateY(10deg) translateX(4px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.page h2 {
+  text-align: center;
+  color: #c43c6b;
+}
+
+.page p {
+  line-height: 1.7;
+  font-size: 17px;
+}
+
+/* PHOTOS */
+
+.photo {
+  display: block;
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;
+  margin: auto;
+  border: 9px solid white;
+  background: #eee;
+  box-shadow: 0 9px 22px rgba(80, 30, 50, .2);
+  transform: rotate(-1deg);
+}
+
+.caption {
+  margin-top: 14px;
+  text-align: center;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.tape {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  width: 85px;
+  height: 25px;
+  background: rgba(245, 193, 207, .75);
+  transform: translateX(-50%) rotate(-4deg);
+  z-index: 5;
+}
+
+/* ENVELOPE */
+
+.envelope-area {
+  min-height: 290px;
+  display: grid;
+  place-items: center;
+}
+
+.envelope {
+  width: 260px;
+  height: 170px;
+  background: #f5a7bf;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 15px 30px rgba(100, 30, 60, .25);
+}
+
+.envelope::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: 130px solid #f18baa;
+  border-right: 130px solid #f18baa;
+  border-bottom: 85px solid #df7095;
+  border-top: 85px solid transparent;
+  z-index: 4;
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-left: 130px solid transparent;
+  border-right: 130px solid transparent;
+  border-top: 95px solid #ffc6d7;
+  transform-origin: top;
+  transition: .8s;
+  z-index: 5;
+}
+
+.letter {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 12px;
+  height: 130px;
+  padding: 17px 12px;
+  background: #fffaf1;
+  text-align: center;
+  transition: .8s;
+  z-index: 2;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .letter {
+  transform: translateY(-120px);
+  height: 230px;
+  z-index: 8;
+  box-shadow: 0 10px 25px rgba(80, 20, 50, .2);
+}
+
+/* SPOTIFY */
+
+.spotify {
+  width: 100%;
+  height: 152px;
+  border: 0;
+  border-radius: 15px;
+}
+
+.music-box {
+  background: white;
+  padding: 8px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(80, 30, 50, .15);
+}
+
+/* CONTROLS */
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.controls .btn {
+  min-width: 115px;
+}
+
+#counter {
+  text-align: center;
+  color: white;
+  margin-top: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+}
+
+.decor {
+  text-align: center;
+  font-size: 25px;
+  letter-spacing: 10px;
+  color: #dc527f;
+}
+
+#fireworks {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 500;
+}
+
+@media (max-width: 520px) {
+
+  #app {
+    padding: 10px 7px 30px;
+  }
+
+  .book {
+    width: 96vw;
+    height: 68vh;
+    min-height: 500px;
+  }
+
+  .page {
+    padding: 18px 15px;
+  }
+
+  .page p {
+    font-size: 16px;
+  }
+
+  .photo {
+    max-height: 48vh;
+    border-width: 7px;
+  }
+
+  .envelope {
+    transform: scale(.88);
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="fireworks"></canvas>
+
+<!-- PASSWORD SCREEN -->
+
+<section id="lock">
+
+  <div class="lock-card">
+
+    <div class="big-heart">♡</div>
+
+    <h1>For My Favorite Girl</h1>
+
+    <p>
+      I made something special just for you.
+      <br>
+      Enter our secret password to open it.
+    </p>
+
+    <input
+      id="password"
+      type="password"
+      inputmode="numeric"
+      maxlength="4"
+      placeholder="••••"
+    >
+
+    <button class="btn open-btn" onclick="unlockBook()">
+      Open My Heart ♡
+    </button>
+
+    <div id="error"></div>
+
+  </div>
+
+</section>
+
+
+<!-- SCRAPBOOK -->
+
+<main id="app" class="hidden">
+
+<header>
+
+  <h1>Happy Girlfriend's Day ♡</h1>
+
+  <p>
+    August 1 — a little collection of us.
+  </p>
+
+</header>
+
+
+<section class="book">
+
+<!-- PAGE 1 -->
+
+<article class="page active">
+
+  <h2>A Letter For You ♡</h2>
+
+  <div class="envelope-area">
+
+    <div class="envelope" id="envelope" onclick="openLetter()">
+
+      <div class="flap"></div>
+
+      <div class="letter" id="letter">
+
+        <b>To my love,</b>
+
+        <br><br>
+
+        Tap this envelope.
+
+        <br>
+
+        I have something to tell you ♡
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <p style="text-align:center">
+    Tap the envelope before turning the page.
+  </p>
+
+</article>
+
+
+<!-- PAGE 2 -->
+
+<article class="page after">
+
+<h2>To My Beautiful Girlfriend</h2>
+
+<p>
+Happy National Girlfriend's Day, love.
+I know today is just one date on the calendar,
+but I wanted to use it as another reason to remind you
+how important you are to me.
+</p>
+
+<p>
+Thank you for being part of my life and for making
+even the most ordinary days feel special.
+Some of my favorite memories aren't huge events.
+They're the simple moments when we're eating together,
+taking random pictures, laughing about something stupid,
+or just sitting beside each other.
+</p>
+
+<p>
+  Good night, baby. 🤍 Before you sleep, gusto ko lang sabihin na thank you for being part of my day. Kahit gaano kapagod o kagulo yung araw, gumagaan talaga pakiramdam ko kapag nakakausap kita.
+
+I hope makapagpahinga ka nang maayos tonight. Iwan mo muna lahat ng worries mo at matulog ka nang mahimbing. Tomorrow is another day, and I'll always be here, supporting and loving you every step of the way.
+</p>
+
+<div class="decor">♡ ✿ ♡</div>
+
+</article>
+
+
+<!-- PAGE 3 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>Us, in Pink ♡</h2>
+
+<img
+class="photo"
+src="photo1.jpg"
+alt="Our first memory"
+
+
+<div class="caption">
+One of the many moments that remind me
+how lucky I am to have you.
+</div>
+
+</article>
+
+
+<!-- PAGE 4 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>Little Surprises</h2>
+
+<img
+class="photo"
+src="photo2.jpg"
+alt="Flowers and chocolates"
+
+
+<div class="caption">
+Flowers may fade and chocolates may disappear,
+but the reason behind them stays the same:
+you deserve to feel loved.
+</div>
+
+</article>
+
+
+<!-- PAGE 5 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>My Favorite Kind of Date</h2>
+
+<img
+class="photo"
+src="photo3.jpg"
+alt="Our date"
+
+
+<div class="caption">
+I don't need anything fancy.
+A simple date becomes special
+when the person beside me is you.
+</div>
+
+</article>
+
+
+<!-- PAGE 6 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>Two Hearts ♡</h2>
+
+<img
+class="photo"
+src="photo4.jpg"
+alt="Our heart pose"
+
+
+<div class="caption">
+Out of all the people we could have met,
+I'm grateful our paths crossed
+and somehow became “us.”
+</div>
+
+</article>
+
+
+<!-- PAGE 7 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>Our Little Movie</h2>
+
+<img
+class="photo"
+src="photo5.jpg"
+alt="Our old movie photo"
+
+
+<div class="caption">
+Every memory feels like another scene
+in a movie I never want to end.
+</div>
+
+</article>
+
+
+<!-- PAGE 8 -->
+
+<article class="page after">
+
+<div class="tape"></div>
+
+<h2>Keep These Forever</h2>
+
+<img
+class="photo"
+src="photo1.jpg"
+alt="Our photobooth pictures"
+
+
+<div class="caption">
+Tiny pictures holding memories
+that mean so much more than their size.
+</div>
+
+</article>
+
+
+<!-- PAGE 9 -->
+
+<article class="page after">
+
+<h2>Things I Love About Us</h2>
+
+<p>
+I love that we have memories that only we understand.
+I love our pictures, our dates, our random conversations,
+and the moments that probably look ordinary to everyone else
+but mean everything to me.
+</p>
+
+<p>
+I love seeing you smile.
+I love being able to call you my girlfriend.
+And most of all, I love knowing that there are still
+so many memories we haven't made yet.
+</p>
+
+<div class="decor">♡ ♡ ♡</div>
+
+</article>
+
+
+<!-- PAGE 10 -->
+
+<article class="page after">
+
+<h2>A Song For You ♫</h2>
+
+<p>
+Play this while you read the rest.
+Some feelings are easier to hear than explain.
+</p>
+
+<div class="music-box">
+
+<iframe
+class="spotify"
+src="https://open.spotify.com/embed/track/3q2Sp5xZP5nvBbmIQTxvYA?utm_source=generator"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+loading="lazy">
+</iframe>
+
+</div>
+
+<br>
+
+<div class="decor">♫ ♡ ♫</div>
+
+</article>
+
+
+<!-- FINAL PAGE -->
+
+<article class="page after">
+
+<h2>And One More Thing...</h2>
+
+<p>
+On August 1, I celebrate you.
+But I hope I make you feel loved on all the ordinary
+days too — the days without flowers,
+without gifts, and without a special occasion.
+</p>
+
+<p>
+I want more dates with you.
+More pictures.
+More food trips.
+More random adventures.
+More laughs.
+More stories that we'll remember years from now.
+</p>
+
+<p>
+And I want more ordinary days that somehow
+become my favorite memories simply because
+I spent them with you.
+</p>
+
+<p>
+<b>
+Happy National Girlfriend's Day, my love.
+</b>
+</p>
+
+<p>
+You're my favorite person to talk to,
+my favorite person to make memories with,
+and most importantly,
+my favorite person to love.
+</p>
+
+<p style="text-align:right">
+
+<i>
+Always yours ♡
+</i>
+
+</p>
+
+<button
+class="btn"
+style="display:block;margin:20px auto"
+onclick="startFireworks(200)"
+
+One More Surprise ♡
+</button>
+
+</article>
+
+</section>
+
+
+<div class="controls">
+
+<button class="btn" onclick="previousPage()">
+← Back
+</button>
+
+<button class="btn" onclick="nextPage()">
+Next →
+</button>
+
+</div>
+
+<div id="counter"></div>
+
+</main>
+
+
+<script>
+
+const PASSWORD = "1316";
+
+const pages = [...document.querySelectorAll(".page")];
+
+let currentPage = 0;
+
+
+/* PASSWORD */
+
+function unlockBook() {
+
+  const password =
+    document.getElementById("password").value;
+
+  if (password === PASSWORD) {
+
+    document
+      .getElementById("lock")
+      .classList.add("hidden");
+
+    document
+      .getElementById("app")
+      .classList.remove("hidden");
+
+    updatePages();
+
+    startFireworks(220);
+
+  } else {
+
+    document.getElementById("error").textContent =
+      "Wrong secret code ♡";
+
+    document.getElementById("password").value = "";
+
+  }
+
+}
+
+document
+.getElementById("password")
+.addEventListener("keydown", function(event) {
+
+  if (event.key === "Enter") {
+    unlockBook();
+  }
+
+});
+
+
+/* ENVELOPE */
+
+function openLetter() {
+
+  const envelope =
+    document.getElementById("envelope");
+
+  envelope.classList.add("open");
+
+  document.getElementById("letter").innerHTML = `
+
+    <b>My love,</b>
+
+    <br><br>
+
+    This little scrapbook is for every smile,
+    every date, every picture,
+    and every memory that made me
+    fall for you even more.
+
+    <br><br>
+
+    <b>
+    Happy Girlfriend's Day ♡
+    </b>
+
+  `;
+
+  setTimeout(function() {
+
+    startFireworks(100);
+
+  }, 500);
+
+}
+
+
+/* FLIPBOOK */
+
+function updatePages() {
+
+  pages.forEach(function(page, index) {
+
+    page.classList.remove(
+      "active",
+      "before",
+      "after"
+    );
+
+    if (index === currentPage) {
+
+      page.classList.add("active");
+
+    }
+
+    else if (index < currentPage) {
+
+      page.classList.add("before");
+
+    }
+
+    else {
+
+      page.classList.add("after");
+
+    }
+
+  });
+
+  document.getElementById("counter").textContent =
+    "Page " +
+    (currentPage + 1) +
+    " of " +
+    pages.length;
+
+}
+
+
+function nextPage() {
+
+  if (currentPage < pages.length - 1) {
+
+    currentPage++;
+
+    updatePages();
+
+  }
+
+}
+
+
+function previousPage() {
+
+  if (currentPage > 0) {
+
+    currentPage--;
+
+    updatePages();
+
+  }
+
+}
+
+
+/* FIREWORKS */
+
+const canvas =
+  document.getElementById("fireworks");
+
+const ctx =
+  canvas.getContext("2d");
+
+let particles = [];
+
+let animationRunning = false;
+
+
+function resizeCanvas() {
+
+  const ratio =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    innerWidth * ratio;
+
+  canvas.height =
+    innerHeight * ratio;
+
+  canvas.style.width =
+    innerWidth + "px";
+
+  canvas.style.height =
+    innerHeight + "px";
+
+  ctx.setTransform(
+    ratio,
+    0,
+    0,
+    ratio,
+    0,
+    0
+  );
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+
+function startFireworks(amount = 160) {
+
+  const colors = [
+    "#ff4f87",
+    "#ff9fbd",
+    "#ffd166",
+    "#ffffff",
+    "#ef73d3"
+  ];
+
+  for (let i = 0; i < amount; i++) {
+
+    const angle =
+      Math.random() *
+      Math.PI *
+      2;
+
+    const speed =
+      2 +
+      Math.random() *
+      7;
+
+    particles.push({
+
+      x:
+        innerWidth *
+        (.2 + Math.random() * .6),
+
+      y:
+        innerHeight *
+        (.12 + Math.random() * .35),
+
+      vx:
+        Math.cos(angle) *
+        speed,
+
+      vy:
+        Math.sin(angle) *
+        speed,
+
+      life:
+        55 +
+        Math.random() *
+        45,
+
+      radius:
+        1.5 +
+        Math.random() *
+        3,
+
+      color:
+        colors[
+          Math.floor(
+            Math.random() *
+            colors.length
+          )
+        ]
+
+    });
+
+  }
+
+  if (!animationRunning) {
+
+    animationRunning = true;
+
+    requestAnimationFrame(
+      animateFireworks
+    );
+
+  }
+
+}
+
+
+function animateFireworks() {
+
+  ctx.clearRect(
+    0,
+    0,
+    innerWidth,
+    innerHeight
+  );
+
+  particles.forEach(function(p) {
+
+    p.x += p.vx;
+
+    p.y += p.vy;
+
+    p.vy += .055;
+
+    p.vx *= .99;
+
+    p.life--;
+
+
+    ctx.globalAlpha =
+      Math.max(
+        0,
+        p.life / 80
+      );
+
+
+    ctx.fillStyle =
+      p.color;
+
+
+    ctx.beginPath();
+
+    ctx.arc(
+      p.x,
+      p.y,
+      p.radius,
+      0,
+      Math.PI * 2
+    );
+
+    ctx.fill();
+
+  });
+
+
+  particles =
+    particles.filter(
+      p => p.life > 0
+    );
+
+
+  ctx.globalAlpha = 1;
+
+
+  if (particles.length) {
+
+    requestAnimationFrame(
+      animateFireworks
+    );
+
+  }
+
+  else {
+
+    animationRunning = false;
+
+  }
+
+}
+
+
+/* PWA MANIFEST */
+
+const manifest = {
+
+  name:
+    "For My Girlfriend",
+
+  short_name:
+    "My Love",
+
+  start_url:
+    ".",
+
+  display:
+    "standalone",
+
+  background_color:
+    "#ffd7e4",
+
+  theme_color:
+    "#ff7fa5"
+
+};
+
+
+const manifestBlob =
+  new Blob(
+    [JSON.stringify(manifest)],
+    {
+      type:
+        "application/manifest+json"
+    }
+  );
+
+
+const manifestURL =
+  URL.createObjectURL(
+    manifestBlob
+  );
+
+
+const manifestLink =
+  document.createElement("link");
+
+
+manifestLink.rel =
+  "manifest";
+
+
+manifestLink.href =
+  manifestURL;
+
+
+document.head.appendChild(
+  manifestLink
+);
+
+
+updatePages();
+
+</script>
+
+</body>
+</html>
